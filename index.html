@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Parcel Sandbox</title>
+    <meta charset="UTF-8" />
+    <style>
+      [data-notify="progressbar"] {
+        margin-bottom: 0px;
+        position: absolute;
+        bottom: 0px;
+        left: 0px;
+        width: 100%;
+        height: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+    <div class="button">
+      <button id="notify">notify!</button>
+    </div>
+    <script src="src/index.js"></script>
+    <script>
+      //task 1
+
+      let numbers = function (from, to) {
+        let start = from;
+        setInterval(function calc() {
+          console.log(start);
+          if (start === to) {
+            break;
+          }
+          start++;
+        }, 2000);
+      };
+
+      numbers(1, 20);
+
+      function Numbersset(from, to) {
+        let start = from;
+
+        let lag = setInterval(function () {
+          console.log(start);
+          if (start === to) {
+            clearInterval(lag);
+          }
+          start++;
+        }, 1000);
+      }
+
+      Numbersset(1, 20);
+    </script>
+    <script>
+      function Timeevent(from, to) {
+        let start1 = from;
+        let timer1 = setInterval(function () {
+          console.log(from);
+          if (from == to) clearInterval(timer1);
+          from++;
+        }, 100);
+      }
+
+      Timeevent(1, 20);
+    </script>
+    <script>
+      function showNotification({ top = 0, right = 0, className, html }) {
+        let notification = document.createElement("div");
+        notification.className = "notification";
+        if (className) {
+          notification.classList.add(className);
+        }
+
+        notification.style.top = top + "px";
+        notification.style.right = right + "px";
+
+        notification.innerHTML = html;
+        document.body.append(notification);
+
+        setTimeout(() => notification.remove(), 1500);
+      }
+
+      function click() {
+        let button = document.querySelector("#notify");
+        notify.addEventListener("click", button);
+        let noti = notify.showNotification({
+          top: 10,
+          right: 10,
+          html: "hello!"
+        });
+      }
+    </script>
+    <script>
+      function delay(ms) {
+        let promise = new promise(function (resolve, reject) {
+          let num = Math.random;
+          setTimeout(() => resolve(console.log(num)), 100);
+        });
+      }
+
+      delay(3000).then(() => alert("done."));
+    </script>
+  </body>
+</html>
