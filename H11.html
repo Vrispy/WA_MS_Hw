@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>H11</title>
+    <meta charset="UTF-8" />
+    <style>
+      html,
+      body,
+      body * {
+        margin: 0;
+        padding: 0;
+      }
+
+      .wbd,
+      .wbd * {
+        box-sizing: border-box;
+        font-family: Ubuntu;
+      }
+
+      .wbd {
+        border: solid 1px #333;
+        padding: 20px;
+        color: black;
+      }
+
+      .info {
+        color: steelblue;
+        font-size: 16px;
+        text-align: center;
+      }
+
+      .form-label {
+        display: block;
+        line-height: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+    <div class="wbd">
+        <div class="info">
+            <span id="temperature"> Температура на завтра &deg;C</span> 
+        </div>
+        <form id="form" class="form">
+            <label class="form-label">
+                Выберите город
+                <select id="city" class="form-select">
+                  <option class="cityoption"></option>
+            </label>
+            <label class="form-label_input">
+                <input type="submit" id="update" class="form-submit" value="Обновить" />
+            </label>
+        </form>
+    </div>
+    <script src="src/index.js"></script>
+    <script>
+      // task 1
+      /* async function wait() {
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+
+        return 10;
+      }
+
+      function f() {
+        wait().then((resolve) => console.log(resolve));
+      }
+
+      f(); */
+    </script>
+    <script>
+      // task 2
+
+      // Разница двух кодов в том, что в первом случае catch обработает f2 как функцию, что должна быть выведена как ошибка (напр. alert("эрор")) - то есть, все равно функция заработает.
+      // во втором коде при запуске then если одна из функций не будет правилно работать (или промис возвращает реджект), этот создаст именно ошибку, и функция дальше не заработает.
+    </script>
+    <script>
+      const cityselect = function (namk) {
+        const cityoption = document.querySelector(".form-select");
+        cityoption.innerHTML = `
+         <option value="${namk.name}">${namk.name}</option>
+          `;
+      };
+
+      let temperature = function(tempo) {
+        let celsie = document.querySelector('span');
+        celsie.innerHTML += `
+        <span id="wbd-widget-temperature"> = ${tempo.main.temp}</span>
+        `
+      }
+
+        fetch("https://community-open-weather-map.p.rapidapi.com/weather?id=2172797&units=%2522metric%2522%20or%20%2522imperial%2522&mode=xml%252C%20html&q=Kyiv", {
+	"method": "GET",
+	"headers": {
+		"x-rapidapi-host": "community-open-weather-map.p.rapidapi.com",
+		"x-rapidapi-key": "8ce6b1dbddmsh9c29d7db5bf8eccp183b46jsn6fbf046a529a"
+	}
+})
+        .then(response => response.json())
+        .then((response) => {
+          console.log(response);
+          cityselect(response);
+          temperature(response);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      
+      document.querySelector("#update").addEventListener('click', async(cityselect) => {
+        if (cityselect.target.value) {
+          getByCode(cityselect.target.value).then((response) => {
+            cityselect(namk[0]);
+          })
+        }
+      });
+
+      // const citylist = namk.map((name) => (
+        //cityoption.innerHTML = citylist.join('');
+    </script>
+  </body>
+</html>
