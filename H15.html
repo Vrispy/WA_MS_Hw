@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Parcel Sandbox</title>
+    <meta charset="UTF-8" />
+    <style>
+      #area {
+        width: 200px;
+        height: 60px;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <textarea id="area" placeholder="write something:"></textarea>
+      <br />
+      <button id="btn">Очистить</button>
+    </div>
+    <div>
+      <br />
+    </div>
+    <div class="login">
+      <button class="log">login</button>
+    </div>
+    <script>
+      document.querySelector("button").addEventListener("click", () => {
+        localStorage.removeItem("#area");
+        area.value = "";
+        area.value = localStorage.getItem("#area");
+        area.oninput = () => {
+          localStorage.setItem("#area", area.value);
+        };
+      });
+    </script>
+    <script>
+      document.querySelector(".log").addEventListener("click", () => {
+        sessionStorage.setItem("login", "1");
+        window.location.href = "H15p2.html";
+      });
+      let loggedin = sessionStorage.getItem("login") === "1";
+      if (loggedin) {
+        window.location.href = "H15p2.html";
+      }
+    </script>
+  </body>
+</html>

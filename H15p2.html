@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Parcel Sandbox</title>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <div>
+      <span>hi!</span>
+    </div>
+    <script>
+      const loggedin = sessionStorage.getItem("login") === "1";
+      if (!loggedin) {
+        window.location.href = "H15.html";
+      }
+    </script>
+  </body>
+</html>
